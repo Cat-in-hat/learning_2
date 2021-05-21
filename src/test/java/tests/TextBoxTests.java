@@ -18,74 +18,41 @@ public class TextBoxTests {
 
     @Test
     void successfulSubmitFormTest() {
-        open("https://demoqa.com/text-box");
+        open("https://demoqa.com/automation-practice-form");
+        //open("https://www.ru");
 
-        $("[id=userName]").setValue("some user");
+        $("[id=firstName]").setValue("Name");
+        $("[id=lastName]").setValue("lastName");
         $("[id=userEmail]").setValue("someemail@mail.ma");
-        $("[id=currentAddress]").setValue("some user address 74");
-        $("[id=permanentAddress]").setValue("some user no i dont have");
+        $("[for=gender-radio-2]").click();
+        $("[id=userNumber]").setValue("8765489764");
+        //$("[id=dateOfBirthInput]").clear
+        //$("[id=dateOfBirthInput]").setValue("21 May 2021");
+        $("[id=dateOfBirthInput]").click();
+        $("[aria-label=\"Choose Sunday, May 9th, 2021\"]").click();
+        $("[for=hobbies-checkbox-2]").click();
+       // $("[id=uploadPicture]").click("");
+        $("[id=currentAddress]").setValue("some user address 58");
+        $("[id=state]").click();
+        $(byText("Haryana")).click();
+        $("[id=city]").click();
+        $(byText("Karnal")).click();
         $("[id=submit]").click();
 
-        $("[id=name]").shouldHave(text("Name:"), text("some user"));
-        $("[id=email]").shouldHave(text("Email:"), text("someemail@mail.ma"));
-        $("[id=currentAddress]", 1).shouldHave(
-                text("Current Address :"), text("some user address 74"));
-        $("p[id=permanentAddress]").shouldHave(
-                text("Permananet Address :"), text("some user no i dont have"));
+        $(byText("Student Name")).shouldHave(text("Name lastName"));
+        //$(byText("Student Email")).shouldHave(text("someemail@mail.ma"));
+       // $("[td=Gender]").shouldHave(text("Gender"), text("Female"));
+       /* $("[td=Mobile]").shouldHave(text("Mobile"), text("8765489764"));
+        $("[td=Date of Birth]").shouldHave(text("Date of Birth"), text("20 May,2021"));
+        $("[td=Subjects]").shouldHave(text("Subjects"), text(" "));
+        $("[td=Hobbies]").shouldHave(text("Hobbies"), text("Reading"));
+        $("[td=Picture]").shouldHave(text("Picture"), text(" "));
+        $("[td=Address]").shouldHave(text("Address"), text("58"));
+        $("[td=State and City]").shouldHave(text("State and City"), text(" "));
+        $("[id=submit]").click(); */
+
     }
 
-    @Test
-    void successfulSubmitFormWithVariablesTest() {
-        String userName = "some user";
-
-        open("https://demoqa.com/text-box");
-
-        $("[id=userName]").setValue(userName);
-        $("[id=userEmail]").setValue("someemail@mail.ma");
-        $("[id=currentAddress]").setValue("some user address 74");
-        $("[id=permanentAddress]").setValue("some user no i dont have");
-        $("[id=submit]").click();
-
-        $("[id=name]").shouldHave(text("Name:"), text(userName));
-        $("[id=email]").shouldHave(text("Email:"), text("someemail@mail.ma"));
-        $("[id=currentAddress]", 1).shouldHave(
-                text("Current Address :"), text("some user address 74"));
-        $("p[id=permanentAddress]").shouldHave(
-                text("Permananet Address :"), text("some user no i dont have"));
-    }
-
-    @Test
-    void successfulSubmitFormSearchInOutputTest() {
-        String userName = "some user";
-
-        open("https://demoqa.com/text-box");
-
-        $("[id=userName]").setValue(userName);
-        $("[id=userEmail]").setValue("someemail@mail.ma");
-        $("[id=currentAddress]").setValue("some user address 74");
-        $("[id=permanentAddress]").setValue("some user no i dont have");
-        $("[id=submit]").click();
-
-        $("[id=output]").shouldHave(text(userName), text("someemail@mail.ma"),
-                text("some user address 74"), text("some user no i dont have"));
-    }
-
-
-    @Test
-    void successfulSubmitFormWithBadLocatorsTest() {
-        String userName = "some user";
-
-        open("https://demoqa.com/text-box");
-
-        $("[id=userName]").setValue(userName);
-        $("[placeholder=\"name@example.com\"]").setValue("someemail@mail.ma");
-        $("textarea").setValue("some user address 74");
-        $(".form-control", 3).setValue("some user no i dont have");
-        $(byText("Submit")).click();
-
-        $("[id=output]").shouldHave(text(userName), text("someemail@mail.ma"),
-                text("some user address 74"), text("some user no i dont have"));
-    }
 
 
 }
