@@ -41,7 +41,7 @@ public class TextBoxTests {
         $("[id=submit]").click();
 
         $("tbody").shouldHave(text("Name lastName"),text("someemail@mail.ma"), text("Female"),
-                text("8765489764"),text("01 Jun 2021"),text("Reading"),text("58"),text("Haryana Karnal"));
+                text("8765489764"),text("01 June,2021"),text("Reading"),text("58"),text("Haryana Karnal"));
         //sleep(5000);
         //$(byText("Student Email")).shouldHave(text("someemail@mail.ma"));
        // $("[td=Gender]").shouldHave(text("Gender"), text("Female"));
