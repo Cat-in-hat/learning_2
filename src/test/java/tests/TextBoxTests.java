@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
 
@@ -28,8 +27,10 @@ public class TextBoxTests {
         $("[id=userNumber]").setValue("8765489764");
         //$("[id=dateOfBirthInput]").clear
         //$("[id=dateOfBirthInput]").setValue("21 May 2021");
-        $("[id=dateOfBirthInput]").click();
-        $("[aria-label=\"Choose Sunday, May 9th, 2021\"]").click();
+        //$("[id=dateOfBirthInput]").click();
+
+        // $ ("[class=react-datepicker__month-select]").find("May").click();
+        //$("[id=dateOfBirthInput]").setValue("Choose Wednesday, May 12th, 2004");
         $("[for=hobbies-checkbox-2]").click();
        // $("[id=uploadPicture]").click("");
         $("[id=currentAddress]").setValue("some user address 58");
@@ -39,7 +40,9 @@ public class TextBoxTests {
         $(byText("Karnal")).click();
         $("[id=submit]").click();
 
-        $(byText("Student Name")).shouldHave(text("Name lastName"));
+        $("tbody").shouldHave(text("Name lastName"),text("someemail@mail.ma"), text("Female"),
+                text("8765489764"),text("01 Jun 2021"),text("Reading"),text("58"),text("Haryana Karnal"));
+        //sleep(5000);
         //$(byText("Student Email")).shouldHave(text("someemail@mail.ma"));
        // $("[td=Gender]").shouldHave(text("Gender"), text("Female"));
        /* $("[td=Mobile]").shouldHave(text("Mobile"), text("8765489764"));
